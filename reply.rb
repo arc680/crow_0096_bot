@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'tweetstream'
 require 'yaml'
+require './random_tweet'
 
 begin
     path = File.expand_path(File.dirname(__FILE__))
@@ -31,13 +32,10 @@ client.track('@crow_0096_bot ') do |status|
     puts "#{status.user.screen_name}(#{status.user.name}): #{status.text}"
 
     tweet_prefix = "( っ'ω'c)"
-    p tweet_prefix
-    tweet = ""
-    cnt = rand(20) + 1
-    puts cnt
-    cnt.times do
-        tweet = tweet + "！"
-    end
+
+    bot_tweet = BotTweet.new
+    bot_tweet.create_tweet
+    tweet = bot_tweet.get_tweet
 
     tweet = "@#{status.user.screen_name} #{tweet_prefix}#{tweet}"
     if tweet.length > 140

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'tweetstream'
 require 'yaml'
+require './random_tweet'
 
 begin
     path = File.expand_path(File.dirname(__FILE__))
@@ -26,10 +27,18 @@ Twitter.configure do |config|
 end
 
 tweet_prefix = "( っ'ω'c)"
-tweet = tweet_prefix + ARGV[0];
+
+if ARGV.length == 0
+    bot_tweet = BotTweet.new
+    bot_tweet.create_tweet
+    tweet = tweet_prefix + bot_tweet.get_tweet
+else
+    tweet = tweet_prefix + ARGV[0];
+end
+
 if tweet.length > 140
     tweet = tweet[0..139]
 end
 
-
+puts tweet
 Twitter.update(tweet);
