@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
+
 require 'tweetstream'
 require 'yaml'
-require './random_tweet'
+require './bot_tweet'
 
 begin
     path = File.expand_path(File.dirname(__FILE__))
@@ -31,7 +33,8 @@ tweet_prefix = "( っ'ω'c)"
 if ARGV.length == 0
     bot_tweet = BotTweet.new
     bot_tweet.create_tweet
-    tweet = tweet_prefix + bot_tweet.get_tweet
+    #tweet = tweet_prefix + bot_tweet.get_tweet
+    tweet = bot_tweet.get_tweet
 else
     tweet = tweet_prefix + ARGV[0];
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class BotTweet
     @@tweet = ""
     def create_simple_tweet(cnt = 5)
