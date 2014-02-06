@@ -21,7 +21,7 @@ TweetStream.configure do |config|
     config.auth_method = :oauth
 end
 
-Twitter.configure do |config|
+tc = Twitter::REST::Client.new do |config|
     config.consumer_key = SETTINGS["CONSUMER_KEY"]
     config.consumer_secret = SETTINGS["CONSUMER_SECRET"]
     config.oauth_token = SETTINGS["OAUTH_TOKEN"]
@@ -44,4 +44,4 @@ if tweet.length > 140
 end
 
 puts tweet
-Twitter.update(tweet);
+tc.update(tweet);

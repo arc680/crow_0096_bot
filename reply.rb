@@ -21,7 +21,7 @@ TweetStream.configure do |config|
     config.auth_method = :oauth
 end
 
-Twitter.configure do |config|
+tc = Twitter::REST::Client.new do |config|
     config.consumer_key = SETTINGS["CONSUMER_KEY"]
     config.consumer_secret = SETTINGS["CONSUMER_SECRET"]
     config.oauth_token = SETTINGS["OAUTH_TOKEN"]
@@ -46,6 +46,6 @@ client.track('@crow_0096_bot ') do |status|
 
         sleep(2)
         puts tweet
-        Twitter.update(tweet, :in_reply_to_status_id => status.id)
+        tc.update(tweet, :in_reply_to_status_id => status.id)
     end
 end
