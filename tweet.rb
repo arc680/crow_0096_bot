@@ -3,7 +3,7 @@
 
 require 'tweetstream'
 require 'yaml'
-require './bot_tweet'
+require '~/crow_0096_bot/bot_tweet'
 
 begin
     path = File.expand_path(File.dirname(__FILE__))
