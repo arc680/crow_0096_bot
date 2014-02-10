@@ -44,7 +44,7 @@ client.track('@crow_0096_bot ') do |status|
             tweet = tweet[0..139]
         end
 
-        sleep(2)
+        sleep(5)
         puts tweet
         tc.update(tweet, :in_reply_to_status_id => status.id)
     end
