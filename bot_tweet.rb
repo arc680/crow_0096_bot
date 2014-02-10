@@ -24,6 +24,19 @@ class BotTweet
 
         return tweet
     end
+    
+    def create_poyo_tweet(cnt = 5)
+        tweet = "( っ'ω'c)"
+        cnt.times do
+            tweet = tweet + "ぽよ"
+        end
+
+        if rand(2) == 1
+            tweet = tweet + "ー"
+        end
+
+        return tweet
+    end
 
     def create_tweet_from_template()
         tweets = Array.new
@@ -37,12 +50,15 @@ class BotTweet
     end
 
     def create_tweet()
-        cnt = rand(10) + 1
-        pattern = rand(3)
+        cnt = rand(5) + 1
+        pattern = rand(7)
+        pattern = 3
         if pattern == 1
             @@tweet = create_simple_tweet(cnt)
         elsif pattern == 2
             @@tweet = create_nya_tweet(cnt)
+        elsif pattern == 3
+            @@tweet = create_poyo_tweet(cnt)
         else 
             @@tweet = create_tweet_from_template() 
         end
