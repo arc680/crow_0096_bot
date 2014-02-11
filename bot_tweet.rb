@@ -51,13 +51,12 @@ class BotTweet
 
     def create_tweet()
         cnt = rand(5) + 1
-        pattern = rand(7)
-        pattern = 3
-        if pattern == 1
+        pattern = rand(4)
+        if pattern == 0
             @@tweet = create_simple_tweet(cnt)
-        elsif pattern == 2
+        elsif pattern == 1
             @@tweet = create_nya_tweet(cnt)
-        elsif pattern == 3
+        elsif pattern == 2
             @@tweet = create_poyo_tweet(cnt)
         else 
             @@tweet = create_tweet_from_template() 
