@@ -3,7 +3,7 @@
 
 require 'tweetstream'
 require 'yaml'
-require './bot_tweet'
+require '~/crow_0096_bot/bot_tweet'
 
 begin
     path = File.expand_path(File.dirname(__FILE__))
@@ -29,23 +29,26 @@ tc = Twitter::REST::Client.new do |config|
 end
 
 client = TweetStream::Client.new
-client.track('@crow_0096_bot ') do |status|
-    puts status.id
+client.userstream do |status|
+#client.track('@crow_0096_bot') do |status|
     puts "#{status.user.screen_name}(#{status.user.name}): #{status.text}"
 
-    if status.text != '@crow_0096_bot ストップ！'
+    check = status.text.include?('@crow_0096_bot')
+    if check
+        if status.text != '@crow_0096_bot ストップ！'
 
-        bot_tweet = BotTweet.new
-        bot_tweet.create_tweet
-        tweet = bot_tweet.get_tweet
+            bot_tweet = BotTweet.new
+            bot_tweet.create_tweet
+            tweet = bot_tweet.get_tweet
 
-        tweet = "@#{status.user.screen_name} #{tweet}"
-        if tweet.length > 140
-            tweet = tweet[0..139]
+            tweet = "@#{status.user.screen_name} #{tweet}"
+            if tweet.length > 140
+                tweet = tweet[0..139]
+            end
+
+            sleep(5)
+            puts tweet
+            tc.update(tweet, :in_reply_to_status_id => status.id)
         end
-
-        sleep(5)
-        puts tweet
-        tc.update(tweet, :in_reply_to_status_id => status.id)
     end
 end

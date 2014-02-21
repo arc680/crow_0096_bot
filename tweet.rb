@@ -13,13 +13,13 @@ rescue
     exit
 end
 
-TweetStream.configure do |config|
-    config.consumer_key = SETTINGS["CONSUMER_KEY"]
-    config.consumer_secret = SETTINGS["CONSUMER_SECRET"]
-    config.oauth_token = SETTINGS["OAUTH_TOKEN"]
-    config.oauth_token_secret = SETTINGS["OAUTH_TOKEN_SECRET"]
-    config.auth_method = :oauth
-end
+#TweetStream.configure do |config|
+#    config.consumer_key = SETTINGS["CONSUMER_KEY"]
+#    config.consumer_secret = SETTINGS["CONSUMER_SECRET"]
+#    config.oauth_token = SETTINGS["OAUTH_TOKEN"]
+#    config.oauth_token_secret = SETTINGS["OAUTH_TOKEN_SECRET"]
+#    config.auth_method = :oauth
+#end
 
 tc = Twitter::REST::Client.new do |config|
     config.consumer_key = SETTINGS["CONSUMER_KEY"]
