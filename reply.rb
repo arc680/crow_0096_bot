@@ -31,10 +31,10 @@ end
 client = TweetStream::Client.new
 client.userstream do |status|
 #client.track('@crow_0096_bot') do |status|
-    puts "#{status.user.screen_name}(#{status.user.name}): #{status.text}"
 
     check = status.text.include?('@crow_0096_bot')
     if check
+        puts "#{status.user.screen_name}(#{status.user.name}): #{status.text}"
         if status.text != '@crow_0096_bot ストップ！'
 
             bot_tweet = BotTweet.new
